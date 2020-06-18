@@ -9,7 +9,7 @@ import {
   PlayCircleOutlined,
   FileDoneOutlined,
 } from '@ant-design/icons';
-
+import { Link } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 
 const DashboardView = (props) => {
@@ -18,16 +18,16 @@ const DashboardView = (props) => {
     return (
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
         <Menu.Item key="1" icon={<HomeOutlined />}>
-          Home
+          <Link to={'/home'}>Home</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-          Series
+          <Link to={'/series'}>Series</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<FormOutlined />}>
-          Articles
+          <Link to={'/articles'}>Articles</Link>
         </Menu.Item>
         <Menu.Item key="4" icon={<TeamOutlined />}>
-          Users
+          <Link to={'/users'}>Users</Link>
         </Menu.Item>
       </Menu>
     );
@@ -36,16 +36,16 @@ const DashboardView = (props) => {
     return (
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
         <Menu.Item key="1" icon={<HomeOutlined />}>
-          Home
+          <Link to={'/home'}>Home</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<FileDoneOutlined />}>
-          Courses
+          <Link to={'/courses'}>Courses</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<PlayCircleOutlined />}>
-          Episodes
+          <Link to={'/episodes'}>Episodes</Link>
         </Menu.Item>
         <Menu.Item key="4" icon={<TeamOutlined />}>
-          My Students
+          <Link to={'/students'}>My Students</Link>
         </Menu.Item>
       </Menu>
     );
