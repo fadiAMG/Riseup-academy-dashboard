@@ -5,7 +5,7 @@ const Protected = ({
   component: Component,
   user,
   path,
-  exact = false,
+  exact,
   requestedRole,
   ...rest
 }) => {
