@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, message, Dropdown, Button, Row, Col } from 'antd';
+import { Layout, Menu, Dropdown, Button, Row, Col } from 'antd';
 import {
   LogoutOutlined,
   VideoCameraOutlined,
@@ -13,7 +13,7 @@ import {
 const { Header, Content, Footer, Sider } = Layout;
 
 const DashboardView = (props) => {
-  const { role } = props;
+  const { role, handleSignout } = props;
   const Admin = () => {
     return (
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
@@ -50,13 +50,9 @@ const DashboardView = (props) => {
       </Menu>
     );
   };
-  function handleMenuClick(e) {
-    message.info('Logged Out Successfully');
-    console.log('click', e);
-  }
 
   const menu = (
-    <Menu onClick={handleMenuClick}>
+    <Menu onClick={handleSignout}>
       <Menu.Item key="1" icon={<LogoutOutlined />}>
         Signout
       </Menu.Item>
