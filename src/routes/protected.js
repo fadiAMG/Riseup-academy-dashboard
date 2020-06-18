@@ -16,7 +16,7 @@ const Protected = ({
 }) => {
   const isAuthed = !!localStorage.getItem('token');
   const role = localStorage.getItem('role');
-  const authorized = requestedRole === role ? true : false;
+  const authorized = requestedRole.includes(role) ? true : false;
   return (
     <Route
       {...rest}
