@@ -1,32 +1,49 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Popup } from '../../sharedComponents/popup/popup';
-
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { User, CurrRoute } from '../../store/atoms/atoms';
+import axios from 'axios';
+import { Redirect } from 'react-router';
 const Login = () => {
-  useEffect(() => {
-    popupLogin();
-  }, []);
+  const [user, setUser] = useRecoilState(User);
+  const setRoute = useSetRecoilState(CurrRoute);
+
+  if (!user.token) {
+    Popup(process.env.REACT_APP_SSO_DOMAIN + '/login', 'Login', 800, 400);
+    var eventMethod = window.addEventListener
+      ? 'addEventListener'
+      : 'attachEvent';
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
+
+    eventer(
+      messageEvent,
+      async function (e) {
+        if (e.origin !== process.env.REACT_APP_SSO_DOMAIN) {
+          return;
+        }
+        localStorage.setItem('token', e.data.token);
+        return await axios
+          .get(process.env.REACT_APP_API_DOMAIN + '/api/v1/academy/me', {
+            headers: { Authorization: `Bearer ${e.data.token}` },
+          })
+          .then((res) => {
+            localStorage.setItem('role', res.data.academyUser.role);
+            setUser({
+              loggedin: true,
+              token: e.data.token,
+              role: res.data.academyUser.role,
+            });
+            setRoute({ component: '/home', key: '1' });
+            return <Redirect to="/home" />;
+          });
+      },
+      false
+    );
+  } else {
+    return <Redirect to="/home" />;
+  }
   return <div></div>;
-};
-
-const popupLogin = () => {
-  Popup(process.env.REACT_APP_SSO_DOMAIN + '/login', 'Login', 800, 400);
-  var eventMethod = window.addEventListener
-    ? 'addEventListener'
-    : 'attachEvent';
-  var eventer = window[eventMethod];
-  var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
-
-  eventer(
-    messageEvent,
-    function (e) {
-      if (e.origin !== process.env.REACT_APP_SSO_DOMAIN) {
-        return;
-      }
-      localStorage.setItem('token', e.data.token);
-      window.location.replace('/home');
-    },
-    false
-  );
 };
 
 export default Login;
