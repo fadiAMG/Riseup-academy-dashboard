@@ -13,10 +13,10 @@ import { Link } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 
 const DashboardView = (props) => {
-  const { role, handleSignout } = props;
+  const { user, handleSignout, activeRoute } = props;
   const Admin = () => {
     return (
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={[activeRoute]}>
         <Menu.Item key="1" icon={<HomeOutlined />}>
           <Link to={'/home'}>Home</Link>
         </Menu.Item>
@@ -34,17 +34,17 @@ const DashboardView = (props) => {
   };
   const Instructor = () => {
     return (
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={[activeRoute]}>
         <Menu.Item key="1" icon={<HomeOutlined />}>
           <Link to={'/home'}>Home</Link>
         </Menu.Item>
-        <Menu.Item key="2" icon={<FileDoneOutlined />}>
+        <Menu.Item key="5" icon={<FileDoneOutlined />}>
           <Link to={'/courses'}>Courses</Link>
         </Menu.Item>
-        <Menu.Item key="3" icon={<PlayCircleOutlined />}>
+        <Menu.Item key="6" icon={<PlayCircleOutlined />}>
           <Link to={'/episodes'}>Episodes</Link>
         </Menu.Item>
-        <Menu.Item key="4" icon={<TeamOutlined />}>
+        <Menu.Item key="7" icon={<TeamOutlined />}>
           <Link to={'/students'}>My Students</Link>
         </Menu.Item>
       </Menu>
@@ -65,14 +65,17 @@ const DashboardView = (props) => {
         <div style={Logo}>
           <img style={LogoImg} src="./assets/logo.svg" alt="logo" />
         </div>
-        {role && role === 'admin' ? <Admin /> : <Instructor />}
+        {user.role && user.role === 'admin' ? <Admin /> : <Instructor />}
       </Sider>
       <Layout style={LayoutStyle}>
         <Header style={HeaderStyle}>
           <Row justify="end">
             <Col>
               <Dropdown overlay={menu} placement="bottomCenter">
-                <Button style={UserNameBtn}>Instructor Mohamed Adel</Button>
+                <Button style={UserNameBtn}>
+                  <span style={RoleSpan}>{user.role && user.role} &nbsp;</span>{' '}
+                  Mohamed Adel
+                </Button>
               </Dropdown>
             </Col>
           </Row>
@@ -115,4 +118,9 @@ const BodyStyle = {
 };
 const UserNameBtn = {
   border: 0,
+};
+const RoleSpan = {
+  color: 'orange',
+  textTransform: 'capitalize',
+  fontWeight: 500,
 };
