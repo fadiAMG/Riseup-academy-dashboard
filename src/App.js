@@ -1,36 +1,42 @@
 import React, { Suspense } from 'react';
 import './App.less';
-import { Switch, BrowserRouter } from 'react-router-dom';
+import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import { routes, Protected } from './routes';
+import { Spinner } from './sharedComponents/loadingIndicator/Spinner';
+import ErrorBoundary from './sharedComponents/errorBoundary';
 
 const menu = routes.map((route, index) => {
-  return (
-    route.component && (
-      // <Protected
-      //   key={index}
-      //   path={route.path}
-      //   exact={route.exact}
-      //   requestedRole={'instructor'}
-      //   render={(props) => <route.component {...props} />}
-      // />
-      <Protected
-        key={index}
-        name={route.name}
-        exact={route.exact}
-        path={route.path}
-        component={route.component}
-        requestedRole={'instructor'}
-      />
-    )
+  return route.requestedRole ? (
+    <Protected
+      key={index}
+      name={route.name}
+      exact={route.exact}
+      path={route.path}
+      component={route.component}
+      requestedRole={route.requestedRole}
+    />
+  ) : (
+    <Route
+      key={index}
+      path={route.path}
+      exact={route.exact}
+      name={route.name}
+      render={(props) => <route.component {...props} />}
+    />
   );
 });
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading</div>}>
-        <Switch>{menu}</Switch>
-      </Suspense>
+      <RecoilRoot>
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Switch>{menu}</Switch>
+          </Suspense>
+        </ErrorBoundary>
+      </RecoilRoot>
     </BrowserRouter>
   );
 };
