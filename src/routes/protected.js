@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import Unauthorized from './../components/403/Unauthorized';
 import { Spinner } from '../sharedComponents/loadingIndicator/Spinner';
@@ -29,7 +29,9 @@ const Protected = ({
               </Dashboard>
             </Suspense>
           );
-        } else {
+        } else if (!isAuthed) {
+          return <Redirect to="/login" />;
+        } else if (!authorized) {
           return <Unauthorized />;
         }
       }}
