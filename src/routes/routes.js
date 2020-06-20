@@ -1,9 +1,12 @@
 import React from 'react';
 
 const Courses = React.lazy(() => import('./../components/courses'));
+const CoursesForm = React.lazy(() =>
+  import('./../components/courses/components/CoursesForm')
+);
+
 const Login = React.lazy(() => import('./../components/login'));
 const Home = React.lazy(() => import('../components/home'));
-
 const NotFound = React.lazy(() => import('./../components/404/NotFound'));
 
 const routes = [
@@ -25,6 +28,13 @@ const routes = [
     exact: true,
     name: 'Courses',
     component: Courses,
+    requestedRole: 'instructor',
+  },
+  {
+    path: ['/courses/create', '/courses/edit'],
+    exact: true,
+    name: 'CoursesForm',
+    component: CoursesForm,
     requestedRole: 'instructor',
   },
   {
