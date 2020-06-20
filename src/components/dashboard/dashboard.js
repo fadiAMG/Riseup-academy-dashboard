@@ -21,7 +21,7 @@ const Dashboard = (props) => {
   const activeRoute = routeId[location.pathname];
   const removeUser = useResetRecoilState(RemoveUser);
   const handleSignout = () => {
-    message.info('Logged Out Successfully');
+    message.success('Logged Out Successfully');
     removeUser();
   };
 
