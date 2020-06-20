@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import Unauthorized from './../components/403/Unauthorized';
+import Unauthorized from '../components/403/Unauthorized';
 import { Spinner } from '../sharedComponents/loadingIndicator/Spinner';
 
-const Dashboard = React.lazy(() => import('./../components/dashboard'));
+const Dashboard = React.lazy(() => import('../components/dashboard'));
 
 const Protected = ({
   component: Component,
