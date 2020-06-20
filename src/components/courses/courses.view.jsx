@@ -2,22 +2,22 @@ import React from 'react';
 import { Button, Tooltip } from 'antd';
 import { SyncOutlined } from '@ant-design/icons';
 import { useSetRecoilState } from 'recoil';
-
+import { Link } from 'react-router-dom';
 import { fetchCourses } from '../../store/selectors/selectors';
 import { Header } from '../../sharedComponents/header/Header';
 import { Datatable } from './components/datatable';
 import { RenderDataTable } from '../../sharedComponents/renderDataTable/RenderDataTable';
 
 export const CoursesView = (props) => {
-  const { columns, data, handleCreate } = props;
+  const { columns, data } = props;
   const syncData = useSetRecoilState(fetchCourses);
   return (
     <div>
       <Header name={'Courses'} />
       <div style={BtnContainer}>
-        <Button type="primary" onClick={handleCreate}>
-          Create Course
-        </Button>
+        <Link to="courses/create">
+          <Button type="primary">Create Course</Button>
+        </Link>
         <Tooltip title="Sync">
           <Button
             type="primary"
