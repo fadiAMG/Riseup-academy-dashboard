@@ -6,8 +6,7 @@ export const RemoveUser = selector({
   key: 'removeUser',
   set: ({ set }) => {
     set(User, { loggedIn: false, token: null, role: null });
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.clear();
     var iframe = document.createElement('iframe');
     iframe.src = process.env.REACT_APP_SSO_DOMAIN + '/signup';
     document.body.appendChild(iframe);

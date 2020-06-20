@@ -6,7 +6,7 @@ export const User = atom({
     loggedin: false,
     token: localStorage.getItem('token'),
     role: localStorage.getItem('role'),
-    username: '',
+    email: localStorage.getItem('email'),
   },
 });
 

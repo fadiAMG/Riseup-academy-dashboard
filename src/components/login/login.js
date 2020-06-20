@@ -27,11 +27,13 @@ const Login = () => {
             headers: { Authorization: `Bearer ${e.data.token}` },
           })
           .then((res) => {
+            localStorage.setItem('email', res.data.user.email);
             localStorage.setItem('role', res.data.academyUser.role);
             setUser({
               loggedin: true,
               token: e.data.token,
               role: res.data.academyUser.role,
+              email: res.data.user.email,
             });
             return <Redirect to="/home" />;
           });

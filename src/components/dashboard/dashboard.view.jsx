@@ -73,8 +73,8 @@ const DashboardView = (props) => {
             <Col>
               <Dropdown overlay={menu} placement="bottomCenter">
                 <Button style={UserNameBtn}>
-                  <span style={RoleSpan}>{user.role && user.role} &nbsp;</span>{' '}
-                  Mohamed Adel
+                  <span style={RoleSpan}>{user.role && user.role} &nbsp;</span>
+                  {user.email}
                 </Button>
               </Dropdown>
             </Col>
