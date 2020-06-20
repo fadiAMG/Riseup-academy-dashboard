@@ -41,6 +41,6 @@ const columns = [
   {
     title: 'Action',
     key: 'operation',
-    render: () => <Actions />,
+    render: (record) => <Actions record={record._id} />,
   },
 ];
