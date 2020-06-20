@@ -1,5 +1,6 @@
 import { selector } from 'recoil';
-import { User } from './../atoms/atoms';
+import { User, Datatable } from './../atoms/atoms';
+import api from '../../helpers/api';
 
 export const RemoveUser = selector({
   key: 'removeUser',
@@ -15,4 +16,15 @@ export const RemoveUser = selector({
       iframe.onload = window.location.reload();
     });
   },
+});
+
+export const fetchCourses = selector({
+  key: 'fetchCourses',
+  get: async ({ get }) => {
+    get(Datatable('courses'));
+    const res = await api.getData('/api/v1/academy/course/my');
+    const data = await res.data;
+    return data.courses;
+  },
+  set: async ({ set }) => set(Datatable('courses'), Math.random()),
 });

@@ -6,9 +6,12 @@ export const User = atom({
     loggedin: false,
     token: localStorage.getItem('token'),
     role: localStorage.getItem('role'),
+    username: '',
   },
 });
-export const CurrRoute = atom({
-  key: 'currRoute',
-  default: { component: '/home', key: '1' },
-});
+
+export const Datatable = (name) =>
+  atom({
+    key: `Datatable${name}`,
+    default: null,
+  });
