@@ -12,6 +12,8 @@ const routeId = {
   '/articles': '3',
   '/users': '4',
   '/courses': '5',
+  '/courses/create': '5',
+  '/courses/edit': '5',
   '/episodes': '6',
   '/students': '7',
 };
@@ -19,6 +21,7 @@ const Dashboard = (props) => {
   const user = useRecoilValue(User);
   const location = useLocation();
   const activeRoute = routeId[location.pathname];
+
   const removeUser = useResetRecoilState(RemoveUser);
   const handleSignout = () => {
     message.success('Logged Out Successfully');

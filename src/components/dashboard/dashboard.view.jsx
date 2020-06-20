@@ -63,7 +63,7 @@ const DashboardView = (props) => {
     <Layout>
       <Sider breakpoint="md" theme="dark" style={SiderStyle}>
         <div style={Logo}>
-          <img style={LogoImg} src="./assets/logo.svg" alt="logo" />
+          <img style={LogoImg} src="/assets/logo.svg" alt="logo" />
         </div>
         {user.role && user.role === 'admin' ? <Admin /> : <Instructor />}
       </Sider>
