@@ -31,7 +31,7 @@ const routes = [
     requestedRole: 'instructor',
   },
   {
-    path: ['/courses/create', '/courses/edit'],
+    path: ['/courses/create', '/courses/edit/:id'],
     exact: true,
     name: 'CoursesForm',
     component: CoursesForm,

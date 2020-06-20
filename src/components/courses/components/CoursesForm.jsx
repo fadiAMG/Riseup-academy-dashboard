@@ -3,18 +3,34 @@ import React, { useState } from 'react';
 import { Form, Input, InputNumber, Button, DatePicker, Select } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { useSetRecoilState } from 'recoil';
-import { useHistory } from 'react-router-dom';
-
+import { useHistory, useParams } from 'react-router-dom';
+import moment from 'moment';
 import { Header } from '../../../sharedComponents/header/Header';
 import { QuestionsModal } from './QuestionsModal';
 import { api, urls, showNotification } from '../../../helpers';
 import { fetchCourses } from '../../../store/selectors/selectors';
 
 const CoursesForm = () => {
+  const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [mode, setMode] = useState('Create');
   const syncData = useSetRecoilState(fetchCourses);
   const history = useHistory();
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    if (id) {
+      setMode('Edit');
+      api.getData(`${urls.course}/${id}`).then((res) => {
+        const { course } = res.data;
+        form.setFieldsValue({
+          ...course,
+          startDate: moment(course.startDate),
+        });
+      });
+    }
+  }, [form, id]);
 
   const onCreate = (values) => {
     const joined = questions.concat(values);
@@ -24,11 +40,13 @@ const CoursesForm = () => {
 
   const onFinish = (values) => {
     const startDate = values.startDate._d.toISOString();
+    const method = mode === 'Create' ? 'POST' : 'PATCH';
+    const url = mode === 'Create' ? urls.course : urls.course + `/${id}`;
     api
-      .postData(urls.course, { questions, ...values, startDate })
+      .postData(url, { questions, ...values, startDate }, method)
       .then(() => {
         syncData();
-        showNotification('success', 'Success', 'Course Created Successfully');
+        showNotification('success', 'Success', `Course ${mode}d Successfully`);
         history.goBack();
       })
       .catch(() =>
@@ -72,19 +90,20 @@ const CoursesForm = () => {
   };
   return (
     <div>
-      <Header showBack={true} name={'Create Course'} />
+      <Header showBack={true} name={`${mode} Course`} />
       <Form
         {...layout}
         name="nest-messages"
         onFinish={onFinish}
         validateMessages={validateMessages}
+        form={form}
       >
         <Form.Item
           name={'courseName'}
           label="Name"
           rules={[{ required: true }]}
         >
-          <Input />
+          <Input value="WWW" />
         </Form.Item>
         <Form.Item name={'courseDescription'} label="Description">
           <Input />

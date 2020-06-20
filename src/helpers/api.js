@@ -12,9 +12,9 @@ export default {
       url,
     }),
 
-  postData: (url, data) =>
+  postData: (url, data, method) =>
     instance({
-      method: 'POST',
+      method,
       url,
       data,
     }),
