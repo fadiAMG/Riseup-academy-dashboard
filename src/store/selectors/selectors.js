@@ -1,6 +1,6 @@
 import { selector } from 'recoil';
 import { User, Datatable } from './../atoms/atoms';
-import api from '../../helpers/api';
+import { urls, api } from '../../helpers';
 
 export const RemoveUser = selector({
   key: 'removeUser',
@@ -21,7 +21,7 @@ export const fetchCourses = selector({
   key: 'fetchCourses',
   get: async ({ get }) => {
     get(Datatable('courses'));
-    const res = await api.getData('/api/v1/academy/course/my');
+    const res = await api.getData(urls.myCourses);
     const data = await res.data;
     return data.courses;
   },

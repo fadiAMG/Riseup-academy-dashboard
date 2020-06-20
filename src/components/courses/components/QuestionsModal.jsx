@@ -19,7 +19,7 @@ export const QuestionsModal = ({ visible, onCreate, onCancel }) => {
       }}
     >
       <Form form={question} layout="vertical">
-        <Form.Item name="title" label="Title">
+        <Form.Item name="text" label="Title">
           <Input type="text" />
         </Form.Item>
         <Form.Item name="type" label="Type">
