@@ -6,6 +6,7 @@ import { User } from '../../store/atoms/atoms';
 import { useLocation } from 'react-router-dom';
 import { RemoveUser } from '../../store/selectors/selectors';
 const routeId = {
+  '/': '1',
   '/home': '1',
   '/series': '2',
   '/articles': '3',

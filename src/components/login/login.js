@@ -1,12 +1,11 @@
 import React from 'react';
 import { Popup } from '../../sharedComponents/popup/popup';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { User, CurrRoute } from '../../store/atoms/atoms';
+import { useRecoilState } from 'recoil';
+import { User } from '../../store/atoms/atoms';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 const Login = () => {
   const [user, setUser] = useRecoilState(User);
-  const setRoute = useSetRecoilState(CurrRoute);
 
   if (!user.token) {
     Popup(process.env.REACT_APP_SSO_DOMAIN + '/login', 'Login', 800, 400);
@@ -34,7 +33,6 @@ const Login = () => {
               token: e.data.token,
               role: res.data.academyUser.role,
             });
-            setRoute({ component: '/home', key: '1' });
             return <Redirect to="/home" />;
           });
       },
