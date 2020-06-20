@@ -17,8 +17,6 @@ export default {
       method: 'POST',
       url,
       data,
-      headers: {
-        'content-type': 'application/json', // override instance defaults
-      },
+      headers,
     }),
 };

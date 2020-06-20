@@ -6,7 +6,7 @@ import { routes, Protected } from './routes';
 import { Spinner } from './sharedComponents/loadingIndicator/Spinner';
 import ErrorBoundary from './sharedComponents/errorBoundary';
 
-const menu = routes.map((route, index) => {
+const dashboard = routes.map((route, index) => {
   return route.requestedRole ? (
     <Protected
       key={index}
@@ -33,7 +33,7 @@ const App = () => {
       <RecoilRoot>
         <ErrorBoundary>
           <Suspense fallback={<Spinner />}>
-            <Switch>{menu}</Switch>
+            <Switch>{dashboard}</Switch>
           </Suspense>
         </ErrorBoundary>
       </RecoilRoot>
