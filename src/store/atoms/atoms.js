@@ -15,3 +15,8 @@ export const Datatable = (name) =>
     key: `Datatable${name}`,
     default: null,
   });
+
+export const drawerState = atom({
+  key: 'drawerState',
+  default: [],
+});

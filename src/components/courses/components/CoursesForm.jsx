@@ -1,5 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, InputNumber, Button, DatePicker, Select } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { useSetRecoilState } from 'recoil';
@@ -19,7 +19,7 @@ const CoursesForm = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (id) {
       setMode('Edit');
       api.getData(`${urls.course}/${id}`).then((res) => {

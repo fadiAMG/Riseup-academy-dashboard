@@ -18,4 +18,10 @@ export default {
       url,
       data,
     }),
+
+  deleteData: (url) =>
+    instance({
+      method: 'DELETE',
+      url,
+    }),
 };
