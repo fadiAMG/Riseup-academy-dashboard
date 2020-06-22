@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
 import { fetchCourses } from '../../store/selectors/selectors';
 import { Header } from '../../sharedComponents/header/Header';
-import { Datatable } from './components/datatable';
+import { Datatable } from '../../sharedComponents/datatable/datatable';
 import { RenderDataTable } from '../../sharedComponents/renderDataTable/RenderDataTable';
 
 export const CoursesView = (props) => {
