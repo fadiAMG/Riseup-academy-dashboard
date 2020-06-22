@@ -22,8 +22,19 @@ export const fetchCourses = selector({
   get: async ({ get }) => {
     get(Datatable('courses'));
     const res = await api.getData(urls.myCourses);
-    const data = await res.data;
-    return data.courses;
+    const data = await res.data.courses;
+    return data;
   },
   set: async ({ set }) => set(Datatable('courses'), Math.random()),
+});
+
+export const fetchEpisodes = selector({
+  key: 'fetchEpisodes',
+  get: async ({ get }) => {
+    get(Datatable('episodes'));
+    const res = await api.getData(urls.me);
+    const data = await res.data.academyUser.assignedEpisodes;
+    return data;
+  },
+  set: async ({ set }) => set(Datatable('episodes'), Math.random()),
 });
