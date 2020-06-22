@@ -2,9 +2,12 @@ import React from 'react';
 import { Drawer, Button, Descriptions, Badge, Tag } from 'antd';
 import { useRecoilValue } from 'recoil';
 import { drawerState } from '../../../store/atoms/atoms';
+import { useHistory } from 'react-router';
 
 const ViewCourse = ({ drawer, onClose }) => {
   const drawerData = useRecoilValue(drawerState);
+  const history = useHistory();
+
   const {
     courseName,
     _id,
@@ -20,7 +23,6 @@ const ViewCourse = ({ drawer, onClose }) => {
     tags,
     updatedAt,
   } = drawerData;
-  console.log(drawerData);
   return (
     <>
       {drawerData && (
@@ -103,14 +105,23 @@ const ViewCourse = ({ drawer, onClose }) => {
                   <Descriptions.Item label="Lesson Description">
                     {lesson.lessonDescription}
                   </Descriptions.Item>
-                  {/* <Descriptions.Item label="Choices">
-                    {lesson.choices &&
-                      lesson.choices.map((choice, index) => (
-                        <h5 key={index}>{choice}</h5>
-                      ))}
-                  </Descriptions.Item> */}
+                  <Descriptions.Item label="Actions" span={3}>
+                    <Button
+                      onClick={() =>
+                        history.push(`courses/lesson/edit/${lesson._id}`)
+                      }
+                    >
+                      Edit
+                    </Button>
+                  </Descriptions.Item>
                 </React.Fragment>
               ))}
+            <Descriptions.Item label="Created At" span={3}>
+              {createdAt}
+            </Descriptions.Item>
+            <Descriptions.Item label="Updated At" span={3}>
+              {updatedAt}
+            </Descriptions.Item>
           </Descriptions>
           ,
         </Drawer>
