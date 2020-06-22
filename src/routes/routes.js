@@ -7,6 +7,8 @@ const CoursesForm = React.lazy(() =>
 const LessonForm = React.lazy(() =>
   import('./../components/courses/components/LessonForm')
 );
+const Episodes = React.lazy(() => import('./../components/episodes'));
+
 const Login = React.lazy(() => import('./../components/login'));
 const Home = React.lazy(() => import('../components/home'));
 const NotFound = React.lazy(() => import('./../components/404/NotFound'));
@@ -44,6 +46,13 @@ const routes = [
     exact: true,
     name: 'LessonForm',
     component: LessonForm,
+    requestedRole: 'instructor',
+  },
+  {
+    path: '/episodes',
+    exact: true,
+    name: 'Episodes',
+    component: Episodes,
     requestedRole: 'instructor',
   },
   {
