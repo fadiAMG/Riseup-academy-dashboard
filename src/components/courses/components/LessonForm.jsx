@@ -91,8 +91,6 @@ const LessonForm = () => {
       message.error(`${e.fileList[0].name} file upload failed.`);
     }
 
-    console.log('Upload event:', e.fileList[0].response);
-
     return e && e.fileList;
   };
 
