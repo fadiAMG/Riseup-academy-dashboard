@@ -12,10 +12,8 @@ import {
 import { useHistory, useParams } from 'react-router-dom';
 import moment from 'moment';
 
-import { Header } from '../../../sharedComponents/header/Header';
+import { Header, TinyMCE, FileUpload } from '../../../sharedComponents';
 import { api, urls, showNotification } from '../../../helpers';
-import TinyMCE from '../../../sharedComponents/tinyMCE/TinyMCE';
-import FileUpload from '../../../sharedComponents/fileUpload/FileUpload';
 
 const LessonForm = () => {
   const [form] = Form.useForm();

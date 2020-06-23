@@ -1,15 +1,10 @@
 import React from 'react';
 import { Button, Menu, Dropdown } from 'antd';
-import {
-  DownOutlined,
-  EyeOutlined,
-  PlusOutlined,
-  RadarChartOutlined,
-} from '@ant-design/icons';
+import { DownOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
 import { useSetRecoilState } from 'recoil';
 import { drawerState } from '../../../store/atoms/atoms';
 
-export const Actions = (props) => {
+const Actions = (props) => {
   const { record, showDrawer, showPollDrawer } = props;
   const setDrawerData = useSetRecoilState(drawerState);
   const handleMenu = (e) => {
@@ -46,3 +41,4 @@ export const Actions = (props) => {
     </Dropdown>
   );
 };
+export default Actions;

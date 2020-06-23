@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Form, Input, Select, Button } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
-export const QuestionsModal = ({ visible, onCreate, onCancel }) => {
+const QuestionsModal = ({ visible, onCreate, onCancel }) => {
   const [question] = Form.useForm();
   return (
     <Modal
@@ -74,3 +74,4 @@ export const QuestionsModal = ({ visible, onCreate, onCancel }) => {
     </Modal>
   );
 };
+export default QuestionsModal;

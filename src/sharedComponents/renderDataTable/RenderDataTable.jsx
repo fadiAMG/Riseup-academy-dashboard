@@ -1,10 +1,10 @@
 import React from 'react';
-import { Skeleton } from '../loadingIndicator/Skeleton';
+import { Skeleton } from '../';
 import { RemoveUser } from '../../store/selectors/selectors';
 import { useResetRecoilState } from 'recoil';
 import { showNotification } from '../../helpers/showNotification';
 
-export const RenderDataTable = ({ data, columns, component: Component }) => {
+const RenderDataTable = ({ data, columns, component: Component }) => {
   const removeUser = useResetRecoilState(RemoveUser);
 
   switch (data.state) {
@@ -25,3 +25,4 @@ export const RenderDataTable = ({ data, columns, component: Component }) => {
     default:
   }
 };
+export default RenderDataTable;

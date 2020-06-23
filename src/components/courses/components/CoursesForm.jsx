@@ -5,8 +5,9 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { useSetRecoilState } from 'recoil';
 import { useHistory, useParams } from 'react-router-dom';
 import moment from 'moment';
-import { Header } from '../../../sharedComponents/header/Header';
-import { QuestionsModal } from './QuestionsModal';
+
+import { Header } from '../../../sharedComponents';
+import QuestionsModal from './QuestionsModal';
 import { api, urls, showNotification } from '../../../helpers';
 import { fetchCourses } from '../../../store/selectors/selectors';
 

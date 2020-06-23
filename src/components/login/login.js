@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popup } from '../../sharedComponents/popup/popup';
+import { Popup } from '../../sharedComponents';
 import { useRecoilState } from 'recoil';
 import { User } from '../../store/atoms/atoms';
 import axios from 'axios';

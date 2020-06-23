@@ -11,7 +11,7 @@ import { useHistory } from 'react-router';
 import { useSetRecoilState } from 'recoil';
 
 import { drawerState } from '../../../store/atoms/atoms';
-export const Actions = (props) => {
+const Actions = (props) => {
   const { record, showDrawer, deleteCourse } = props;
   const setDrawerData = useSetRecoilState(drawerState);
   const history = useHistory();
@@ -61,3 +61,4 @@ export const Actions = (props) => {
     </Dropdown>
   );
 };
+export default Actions;

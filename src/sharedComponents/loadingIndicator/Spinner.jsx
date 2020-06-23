@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spin, Space } from 'antd';
 
-export const Spinner = () => {
+const Spinner = () => {
   return (
     <div>
       <Space
@@ -18,3 +18,4 @@ export const Spinner = () => {
     </div>
   );
 };
+export default Spinner;

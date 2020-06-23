@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { CoursesView } from './courses.view';
-import { Actions } from './components/actions';
-import { fetchCourses } from '../../store/selectors/selectors';
 import { useRecoilValueLoadable } from 'recoil';
 import { Tag } from 'antd';
-import ViewCourse from './components/ViewCourse';
+
+import { CoursesView } from './courses.view';
+import { Actions, ViewCourse } from './components';
+import { fetchCourses } from '../../store/selectors/selectors';
 import { api, showNotification, urls } from '../../helpers';
 
 const Courses = () => {

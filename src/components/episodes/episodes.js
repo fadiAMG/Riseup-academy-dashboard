@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { EpisodesView } from './episodes.view';
-import { Actions } from './components/actions';
-import { fetchEpisodes } from '../../store/selectors/selectors';
 import { useRecoilValueLoadable } from 'recoil';
-import ViewEpisodes from './components/ViewEpisodes';
-import CreatePolls from './components/CreatePolls';
+
+import { EpisodesView } from './episodes.view';
+import { Actions, ViewEpisodes, CreatePolls } from './components';
+import { fetchEpisodes } from '../../store/selectors/selectors';
 
 const Episodes = () => {
   const data = useRecoilValueLoadable(fetchEpisodes);

@@ -2,10 +2,9 @@ import React from 'react';
 import { Button, Tooltip } from 'antd';
 import { SyncOutlined } from '@ant-design/icons';
 import { useSetRecoilState } from 'recoil';
+
 import { fetchEpisodes } from '../../store/selectors/selectors';
-import { Header } from '../../sharedComponents/header/Header';
-import { Datatable } from '../../sharedComponents/datatable/datatable';
-import { RenderDataTable } from '../../sharedComponents/renderDataTable/RenderDataTable';
+import { Header, Datatable, RenderDataTable } from '../../sharedComponents';
 
 export const EpisodesView = (props) => {
   const { columns, data } = props;

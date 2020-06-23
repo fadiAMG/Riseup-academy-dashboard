@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import Unauthorized from '../components/403/Unauthorized';
-import { Spinner } from '../sharedComponents/loadingIndicator/Spinner';
+import { Spinner } from '../sharedComponents';
 
 const Dashboard = React.lazy(() => import('../components/dashboard'));
 

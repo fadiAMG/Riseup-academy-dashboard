@@ -3,10 +3,9 @@ import { Button, Tooltip } from 'antd';
 import { SyncOutlined } from '@ant-design/icons';
 import { useSetRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
+
 import { fetchCourses } from '../../store/selectors/selectors';
-import { Header } from '../../sharedComponents/header/Header';
-import { Datatable } from '../../sharedComponents/datatable/datatable';
-import { RenderDataTable } from '../../sharedComponents/renderDataTable/RenderDataTable';
+import { Header, Datatable, RenderDataTable } from '../../sharedComponents';
 
 export const CoursesView = (props) => {
   const { columns, data } = props;

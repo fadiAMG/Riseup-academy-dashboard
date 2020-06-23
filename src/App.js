@@ -3,8 +3,7 @@ import './App.less';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { routes, Protected } from './routes';
-import { Spinner } from './sharedComponents/loadingIndicator/Spinner';
-import ErrorBoundary from './sharedComponents/errorBoundary';
+import { Spinner, ErrorBoundary } from './sharedComponents';
 
 const dashboard = routes.map((route, index) => {
   return route.requestedRole ? (

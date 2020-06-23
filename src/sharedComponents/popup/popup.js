@@ -1,4 +1,4 @@
-export const Popup = (url, title, w, h) => {
+const Popup = (url, title, w, h) => {
   var userAgent = navigator.userAgent,
     mobile = function () {
       return (
@@ -44,3 +44,5 @@ export const Popup = (url, title, w, h) => {
 
   return newWindow;
 };
+
+export default Popup;
