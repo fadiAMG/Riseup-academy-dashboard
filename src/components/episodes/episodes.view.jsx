@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Tooltip } from 'antd';
 import { SyncOutlined } from '@ant-design/icons';
 import { useSetRecoilState } from 'recoil';
-import { Link } from 'react-router-dom';
 import { fetchEpisodes } from '../../store/selectors/selectors';
 import { Header } from '../../sharedComponents/header/Header';
 import { Datatable } from '../../sharedComponents/datatable/datatable';
@@ -15,9 +14,6 @@ export const EpisodesView = (props) => {
     <div>
       <Header name={'Episodes'} />
       <div style={BtnContainer}>
-        <Link to="episodes/create">
-          <Button type="primary">Create Episode</Button>
-        </Link>
         <Tooltip title="Sync">
           <Button
             type="primary"
@@ -36,5 +32,5 @@ export const EpisodesView = (props) => {
 const BtnContainer = {
   marginBottom: 16,
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
 };

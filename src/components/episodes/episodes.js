@@ -4,11 +4,12 @@ import { Actions } from './components/actions';
 import { fetchEpisodes } from '../../store/selectors/selectors';
 import { useRecoilValueLoadable } from 'recoil';
 import ViewEpisodes from './components/ViewEpisodes';
+import CreatePolls from './components/CreatePolls';
 
 const Episodes = () => {
   const data = useRecoilValueLoadable(fetchEpisodes);
   const [drawer, setDrawer] = useState(false);
-
+  const [pollDrawer, setPollDrawer] = useState(false);
   const columns = [
     { title: 'Name', dataIndex: 'name' },
     {
@@ -21,7 +22,11 @@ const Episodes = () => {
       title: 'Action',
       key: 'operation',
       render: (record) => (
-        <Actions showDrawer={() => setDrawer(true)} record={record} />
+        <Actions
+          showPollDrawer={() => setPollDrawer(true)}
+          showDrawer={() => setDrawer(true)}
+          record={record}
+        />
       ),
     },
   ];
@@ -29,6 +34,7 @@ const Episodes = () => {
     <>
       <EpisodesView data={data} columns={columns} />
       <ViewEpisodes drawer={drawer} onClose={() => setDrawer(false)} />
+      <CreatePolls drawer={pollDrawer} onClose={() => setPollDrawer(false)} />
     </>
   );
 };

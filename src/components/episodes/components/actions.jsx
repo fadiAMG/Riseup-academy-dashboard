@@ -6,14 +6,12 @@ import {
   PlusOutlined,
   RadarChartOutlined,
 } from '@ant-design/icons';
-import { useHistory } from 'react-router';
 import { useSetRecoilState } from 'recoil';
 import { drawerState } from '../../../store/atoms/atoms';
 
 export const Actions = (props) => {
-  const { record, showDrawer, deleteCourse } = props;
+  const { record, showDrawer, showPollDrawer } = props;
   const setDrawerData = useSetRecoilState(drawerState);
-  const history = useHistory();
   const handleMenu = (e) => {
     switch (e.key) {
       case '1':
@@ -22,11 +20,8 @@ export const Actions = (props) => {
         break;
 
       case '2':
-        history.push(`courses/edit/${record._id}`);
-        break;
-
-      case '3':
-        deleteCourse(record._id);
+        setDrawerData(record);
+        showPollDrawer();
         break;
 
       default:
@@ -40,9 +35,6 @@ export const Actions = (props) => {
       </Menu.Item>
       <Menu.Item icon={<PlusOutlined />} key="2">
         Add New Poll
-      </Menu.Item>
-      <Menu.Item icon={<RadarChartOutlined />} key="3">
-        View Polls
       </Menu.Item>
     </Menu>
   );

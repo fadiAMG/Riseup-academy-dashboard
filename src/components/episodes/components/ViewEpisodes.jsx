@@ -1,7 +1,8 @@
 import React from 'react';
-import { Drawer, Button, Descriptions } from 'antd';
+import { Drawer, Button, Descriptions, Space } from 'antd';
 import { useRecoilValue } from 'recoil';
 import { drawerState } from '../../../store/atoms/atoms';
+import { api, urls, showNotification } from '../../../helpers';
 
 const ViewEpisodes = ({ drawer, onClose }) => {
   const drawerData = useRecoilValue(drawerState);
@@ -18,7 +19,23 @@ const ViewEpisodes = ({ drawer, onClose }) => {
     meetingStartTime,
     meetingStartUrl,
     updatedAt,
+    pollId,
   } = drawerData;
+  const triggerPoll = (pollId) => {
+    api
+      .postData(`${urls.triggerPoll}/${pollId}/${_id}`, {}, 'POST')
+      .then((res) => {
+        showNotification('success', 'Success', res.data.message);
+        onClose();
+      })
+      .catch(() =>
+        showNotification(
+          'error',
+          "Couldn't Start Poll",
+          'Something went wrong. Internal Server Error'
+        )
+      );
+  };
   return (
     <>
       {drawerData && (
@@ -67,6 +84,21 @@ const ViewEpisodes = ({ drawer, onClose }) => {
                 Start Meeting
               </Button>
             </Descriptions.Item>
+            {pollId &&
+              pollId.map((poll) => (
+                <Descriptions.Item label={`Poll ID: ${poll}`} span={3}>
+                  <Space size="large">
+                    <Button onClick={() => triggerPoll(poll)}>Start</Button>
+                    <Button
+                      onClick={() =>
+                        window.open(`https://strawpoll.com/${poll}/r`, '_blank')
+                      }
+                    >
+                      View Results
+                    </Button>
+                  </Space>
+                </Descriptions.Item>
+              ))}
             <Descriptions.Item label="Created At" span={3}>
               {createdAt}
             </Descriptions.Item>
