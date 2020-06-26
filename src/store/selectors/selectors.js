@@ -38,3 +38,32 @@ export const fetchEpisodes = selector({
   },
   set: async ({ set }) => set(Datatable('episodes'), Math.random()),
 });
+
+export const fetchStudents = selector({
+  key: 'fetchStudents',
+  get: async ({ get }) => {
+    get(Datatable('students'));
+    const res = await api.getData(urls.myCourses);
+    const courses = await res.data.courses;
+    const myArray = [];
+    courses &&
+      courses.length > 0 &&
+      (await Promise.all(
+        await courses.map(async (x) => {
+          const result = await api.getData(
+            process.env.REACT_APP_API_DOMAIN +
+              `/api/v1/academy/course/${x._id}/users`
+          );
+          const {
+            data: { users },
+          } = result;
+          if (users) {
+            myArray.push(users);
+          }
+        })
+      ));
+    const data = [].concat.apply([], myArray);
+    return data;
+  },
+  set: async ({ set }) => set(Datatable('students'), Math.random()),
+});

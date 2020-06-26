@@ -5,4 +5,5 @@ export const urls = {
   me: '/api/v1/academy/me',
   episode: '/api/v1/academy/episode',
   triggerPoll: '/api/v1/academy/episode/pollevent',
+  enrollment: '/api/v1/academy/enrollment',
 };
